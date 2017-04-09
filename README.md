@@ -1,0 +1,2 @@
+#flag  
+BCTF{3c1fffb76f147d420f984ac651505905}

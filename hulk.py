@@ -15,28 +15,8 @@ sys.stdout = Unbuffered(sys.stdout)
 import random
 import binascii
 import re
-from Crypto.Cipher import AES
-from Crypto import Random
+from mycryptolib import *
 
-key = 'V38lKILOJmtpQMHp'
-flag = 'BCTF{beaty_and_beast}'
-
-def pad(s):
-    return s + (16 - len(s) % 16) * chr(16 - len(s) % 16)
-
-def encrypt( msg, iv_p=0, refresh_key = False):
-    raw = pad(msg)
-    if iv_p == 0:
-        iv = Random.new().read( AES.block_size )
-    else:
-        iv = iv_p
-    global key
-    if refresh_key == True:
-        key = Random.new().read( AES.block_size )
-    cipher = AES.new(key, AES.MODE_CBC, iv )
-    return cipher.encrypt( raw )
-
-#input string in hex format, output the hex decoded string
 def hex2charlist(hexstr):
     charlist = []
     length = len(hexstr)
@@ -49,7 +29,6 @@ def hex2charlist(hexstr):
 
 if __name__ == '__main__':
     pattern = '\A[0-9a-fA-F]+\Z'
-    # while True:
     request1 = raw_input('Give me the first hex vaule to encrypt: 0x').strip()
     if len(request1) > 64 or not re.match(pattern, request1):
         print 'invalid input, bye!'
