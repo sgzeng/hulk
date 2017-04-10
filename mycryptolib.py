@@ -19,7 +19,7 @@ from Crypto.Cipher import AES
 from Crypto import Random
 
 key = 'V38lKILOJmtpQMHp'
-flag = 'BCTF{3c1fffb76f147d420f984ac651505905}'
+flag = 'bctf{3c1fffb76f147d420f984ac651505905}'
 
 def pad(s):
     return s + (16 - len(s) % 16) * chr(16 - len(s) % 16)
