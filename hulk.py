@@ -30,7 +30,7 @@ def hex2charlist(hexstr):
 if __name__ == '__main__':
     pattern = '\A[0-9a-fA-F]+\Z'
     request1 = raw_input('Give me the first hex vaule to encrypt: 0x').strip()
-    if len(request1) > 64 or not re.match(pattern, request1):
+    if len(request1) > 96 or not re.match(pattern, request1):
         print 'invalid input, bye!'
         exit(0)
     plaintext1 = "".join(item for item in hex2charlist(request1)) + flag
@@ -40,11 +40,11 @@ if __name__ == '__main__':
     print 'plaintext: 0x%s\nciphertext: 0x%s' % (plaintext1_str, ciphertext1_str)
 
     request2 = raw_input('Give me the second hex vaule to encrypt: 0x').strip()
-    if len(request2) > 64 or not re.match(pattern, request2):
+    if len(request2) > 96 or not re.match(pattern, request2):
         print 'invalid input, bye!'
         exit(0)
     plaintext2 = "".join(item for item in hex2charlist(request2))
-    ciphertext2 = encrypt(plaintext2, str(ciphertext1[-16:]), refresh_key = False)
+    ciphertext2 = encrypt(plaintext2, iv_p = str(ciphertext1[-16:]), refresh_key = False)
     plaintext2_str = request2
     ciphertext2_str = ciphertext2.encode('hex')
     print 'plaintext: 0x%s\nciphertext: 0x%s' % (plaintext2_str, ciphertext2_str)
